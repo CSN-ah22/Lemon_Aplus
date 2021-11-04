@@ -48,7 +48,7 @@ public class LoginPanel extends JPanel {
            @Override
            public void actionPerformed(ActionEvent e) {
                //이벤트 기능
-               System.out.println("로그인을 요청했습니다");
+               Main.movePage(3);
            }
        });
        add(bt_login);

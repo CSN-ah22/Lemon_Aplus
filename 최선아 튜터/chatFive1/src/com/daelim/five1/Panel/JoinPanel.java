@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 public class JoinPanel extends JPanel {
     private JTextField nameField;
     private JTextField emailField;
+    private JTextField id_field;
+    private JTextField pw_field;
+    private JTextField check_pw_field;
 
     //기본생성자
     public JoinPanel(){
@@ -36,12 +39,74 @@ public class JoinPanel extends JPanel {
         emailField.setBounds(180,100,200,30);
         add(emailField);
 
+        /*아이디*/
+        JLabel join_id = new JLabel("아이디:");
+        join_id.setBounds(120,150,60,30);
+        add(join_id);
+
+        id_field = new JTextField();
+        id_field.setBounds(180,150,200,30);
+        add(id_field);
+        /*아이디 END*/
+
+        /*비밀번호*/
+        JLabel join_pw = new JLabel("비밀번호:");
+        join_pw.setBounds(120,200,60,30);
+        add(join_pw);
+
+        pw_field = new JPasswordField();
+        pw_field.setBounds(180,200,200,30);
+        add(pw_field);
+        /*비밀번호 END*/
+
+        /*비밀번호 확인*/
+        JLabel check_pw = new JLabel("비밀번호 확인");
+        check_pw.setBounds(120,250,80,30);
+        add(check_pw);
+
+        check_pw_field = new JPasswordField();
+        check_pw_field.setBounds(200,250,180,30);
+        add(check_pw_field);
+        /*비밀번호 확인 END*/
+
+        /*비교문구 FAIL*/
+        JLabel check_pw_FAIL = new JLabel("비밀번호를 다시 확인해주세요");
+        check_pw_FAIL.setBounds(200,290,200,30);
+        check_pw_FAIL.setForeground(new Color(102,0,153));
+        add(check_pw_FAIL);
+        check_pw_FAIL.setVisible(false);
+        /*비교문구 FAIL*/
+
+        /*비교문구 OK*/
+        JLabel check_pw_OK = new JLabel("비밀번호 확인이 되었습니다");
+        check_pw_OK.setBounds(200,290,200,30);
+        check_pw_OK.setForeground(new Color(0,128,0));
+        add(check_pw_OK);
+        check_pw_OK.setVisible(false);
+        /*비교문구 OK*/
+
+
         JButton bt_join = new JButton("가입하기");
         bt_join.setBounds(120,350,260,30);
         bt_join.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("회원가입을 요청했습니다");
+                String myPass = pw_field.getText();
+                String myPass2 = check_pw_field.getText();
+
+                if(myPass.equals("")||myPass2.equals("")){
+                    //null값이 들어왔을때
+                    check_pw_OK.setVisible(false);
+                    check_pw_FAIL.setVisible(true);
+                }else if(myPass.equals(myPass2)){
+                    //비밀번호가 비밀번호확인과 같을때
+                    check_pw_FAIL.setVisible(false);
+                    check_pw_OK.setVisible(true);
+                }else {
+                    //비밀번호가 비밀번호확인과 같지 않을때
+                    check_pw_OK.setVisible(false);
+                    check_pw_FAIL.setVisible(true);
+                }
             }
         });
         add(bt_join);

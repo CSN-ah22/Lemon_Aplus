@@ -2,6 +2,7 @@ package com.daelim.five1;
 
 import com.daelim.five1.Panel.JoinPanel;
 import com.daelim.five1.Panel.LoginPanel;
+import com.daelim.five1.Panel.MainPanel;
 
 import javax.swing.*;
 
@@ -11,6 +12,7 @@ public class Main {
     public static JFrame f;
     private static LoginPanel loginPage;
     private static JoinPanel joinPage;
+    private static MainPanel mainPage;
 
     public static void main(String[] args) {
 
@@ -18,13 +20,15 @@ public class Main {
        f.setSize(500,500);
        f.setLayout(null);
 
-        //로그인판넬 객체 생성
+
         //클래스이름 참조변수 = new 생성자()
         loginPage = new LoginPanel();
         joinPage = new JoinPanel();
+        mainPage = new MainPanel();
 
         f.add(loginPage); //보이는 부분,출력하는 부분
         f.add(joinPage);
+        f.add(mainPage);
 
         f.setVisible(true);
 
@@ -36,6 +40,7 @@ public class Main {
     public static void movePage(int index){
         loginPage.setVisible(false);
         joinPage.setVisible(false);
+        mainPage.setVisible(false);
 
         switch (index){
             case 1:
@@ -45,6 +50,10 @@ public class Main {
             case 2:
                 f.setTitle("Chat - 회원가입 화면");
                 joinPage.setVisible(true);
+                break;
+            case 3:
+                f.setTitle("Chat - 채팅화면");
+                mainPage.setVisible(true);
                 break;
         }
 
