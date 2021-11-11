@@ -75,8 +75,7 @@ public class LoginPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
             	//이벤트 기능
-            	System.out.println("환경설정을 요청했습니다");
-                
+                Main.movePage(4);
             }
 
          });
