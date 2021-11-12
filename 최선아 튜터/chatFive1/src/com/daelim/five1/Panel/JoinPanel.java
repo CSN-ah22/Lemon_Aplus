@@ -78,13 +78,23 @@ public class JoinPanel extends JPanel {
         /*비교문구 FAIL*/
 
         /*비교문구 OK*/
-        JLabel check_pw_OK = new JLabel("비밀번호 확인이 되었습니다");
-        check_pw_OK.setBounds(200,290,200,30);
+        JLabel check_pw_OK = new JLabel("등록되었습니다 로그인 창으로 돌아가주십시오");
+        check_pw_OK.setBounds(130,300,600,30);
         check_pw_OK.setForeground(new Color(0,128,0));
         add(check_pw_OK);
         check_pw_OK.setVisible(false);
         /*비교문구 OK*/
 
+        JButton bt_login = new JButton("로그인 화면으로 이동");
+        bt_login.setBounds(120,400,260,30);
+        bt_login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.movePage(1);
+            }
+        });
+
+        add(bt_login);
 
         JButton bt_join = new JButton("가입하기");
         bt_join.setBounds(120,350,260,30);
@@ -102,6 +112,7 @@ public class JoinPanel extends JPanel {
                     //비밀번호가 비밀번호확인과 같을때
                     check_pw_FAIL.setVisible(false);
                     check_pw_OK.setVisible(true);
+                    bt_join.setVisible(false);
                 }else {
                     //비밀번호가 비밀번호확인과 같지 않을때
                     check_pw_OK.setVisible(false);

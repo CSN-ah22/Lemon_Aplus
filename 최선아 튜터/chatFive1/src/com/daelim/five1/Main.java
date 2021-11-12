@@ -3,6 +3,7 @@ package com.daelim.five1;
 import com.daelim.five1.Panel.JoinPanel;
 import com.daelim.five1.Panel.LoginPanel;
 import com.daelim.five1.Panel.MainPanel;
+import com.daelim.five1.Panel.SettingPanel;
 
 import javax.swing.*;
 
@@ -13,6 +14,7 @@ public class Main {
     private static LoginPanel loginPage;
     private static JoinPanel joinPage;
     private static MainPanel mainPage;
+    private static SettingPanel settingPage;
 
     public static void main(String[] args) {
 
@@ -25,10 +27,12 @@ public class Main {
         loginPage = new LoginPanel();
         joinPage = new JoinPanel();
         mainPage = new MainPanel();
+        settingPage = new SettingPanel();
 
         f.add(loginPage); //보이는 부분,출력하는 부분
         f.add(joinPage);
         f.add(mainPage);
+        f.add(settingPage);
 
         f.setVisible(true);
 
@@ -41,6 +45,7 @@ public class Main {
         loginPage.setVisible(false);
         joinPage.setVisible(false);
         mainPage.setVisible(false);
+        settingPage.setVisible(false);
 
         switch (index){
             case 1:
@@ -54,6 +59,10 @@ public class Main {
             case 3:
                 f.setTitle("Chat - 채팅화면");
                 mainPage.setVisible(true);
+                break;
+            case 4:
+                f.setTitle("Chat - 환경설정 화면");
+                settingPage.setVisible(true);
                 break;
         }
 

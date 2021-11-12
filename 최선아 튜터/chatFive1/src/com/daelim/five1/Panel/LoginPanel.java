@@ -68,7 +68,8 @@ public class LoginPanel extends JPanel {
        bt_setting.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               System.out.println("환경설정 편집을 요청했습니다");
+
+               Main.movePage(4);
            }
        });
        add(bt_setting);
