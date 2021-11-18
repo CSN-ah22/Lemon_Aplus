@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
 public class LoginPanel extends JPanel {
     public String line = "";
@@ -49,6 +51,25 @@ public class LoginPanel extends JPanel {
            public void actionPerformed(ActionEvent e) {
                //이벤트 기능
                Main.movePage(3);
+               // 세팅되어있는 서버:포트 값을 읽어옵니다
+               try{
+                   FileInputStream fis = new FileInputStream("d://settingData.txt");
+                   ObjectInputStream in = new ObjectInputStream(fis);
+
+                   //문자열 추출
+                   String f_line = in.readObject().toString();
+                   int first = f_line.indexOf("ws://");
+                   String e_line = f_line.substring(first);
+
+                   //추출된 문자열을 Main으로 보낸다
+                   Main.uri(e_line);
+                   in.close();
+
+               }catch (Exception es){
+                   es.printStackTrace();
+               }
+
+               Main.connect(idField.getText());
            }
        });
        add(bt_login);

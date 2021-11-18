@@ -56,17 +56,17 @@ public class SettingPanel extends JPanel {
                     JOptionPane.showMessageDialog(Main.f,"서버 정보가 입력되지 않았습니다.");
                     return;
                 }
-                if (port.getText().equals("")){
+/*                if (port.getText().equals("")){
                     JOptionPane.showMessageDialog(Main.f,"포트 정보가 입력되지 않았습니다.");
                     return;
-                }
+                }*/
                 try{
                     SettingData data;
                     data = new SettingData(server.getText(),port.getText());
 
                     //파일에 저장
                     FileOutputStream fo = new FileOutputStream("d://settingData.txt");
-                    String write_value = "ws://"+data.getServer()+":"+data.getPort();
+                    String write_value = "ws://"+data.getServer()+":"; //+data.getPort();
                     ObjectOutputStream out = new ObjectOutputStream(fo);
                     out.writeObject(write_value);
                     out.close();
@@ -74,8 +74,16 @@ public class SettingPanel extends JPanel {
                     //파일 읽어오기
                     FileInputStream fi = new FileInputStream("d://settingData.txt");
                     ObjectInputStream in = new ObjectInputStream(fi);
-                    in.readObject();
+
+                    //문자열 추출
+                    String f_line = in.readObject().toString();
+                    int first = f_line.indexOf("ws://");
+                    String e_line = f_line.substring(first);
+
+                    //추출된 문자열을 Main으로 보낸다
+                    Main.uri(e_line);
                     in.close();
+
                 }catch (Exception ex){
                     ex.printStackTrace();
                 }
