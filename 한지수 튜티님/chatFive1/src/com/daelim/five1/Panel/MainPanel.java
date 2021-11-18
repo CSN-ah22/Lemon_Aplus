@@ -37,6 +37,7 @@ public class MainPanel extends JPanel{
                     return;
                 } 
                 else {
+                	 Main.sendMessage(text.getText());
                      textArea.append(text.getText()+"\n");
                      //text.setText("");
                      System.out.println("전송됨");
@@ -60,6 +61,7 @@ public class MainPanel extends JPanel{
         Action ok = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	Main.sendMessage(text.getText());
                 textArea.append(text.getText()+"\n");
                 text.setText("");
                 textArea.setCaretPosition(textArea.getDocument().getLength()); 
@@ -71,5 +73,17 @@ public class MainPanel extends JPanel{
         text.getActionMap().put("ENTER", ok);
         /*엔터키 액션끝*/
 	}
+	
+	public static void recvMsg(String s) {
 
+        String[] strs = s.split("\\|");
+        textArea.setFont(new Font("굴림체", Font.BOLD, 15));
+        textArea.setForeground(Color.BLUE);
+        textArea.append("메세지 보낸사람 : " + strs[0] + "\n");
+        textArea.append("보낸 시간 : " + strs[1] + "\n");
+        textArea.append("보낸 메시지 : " + strs[2] + "\n");
+        textArea.append("----------------------" + "\n");
+        textArea.setCaretPosition(textArea.getDocument().getLength());
+
+    }
 }
